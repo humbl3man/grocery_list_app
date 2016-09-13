@@ -16,13 +16,13 @@ end
 def continue?()
   print "Add more items (yes|no)? "
   answer = gets.chomp.to_s.downcase
+
   if answer == 'yes'
     return true
   else
     return false
   end
 end
-
 
 def print_character(character, times)
   puts character.to_s * times.to_i
@@ -40,10 +40,15 @@ end
 list = create_grocery_list()
 puts "Great! I created #{list['name']} for you. Now add items."
 continue_add = true
-while continue_add == true do
+
+loop do
   new_item = add_new_item()
   list["items"].push(new_item)
-  continue_add = continue?()
+  print "Are you done? (yes | no)"
+  answer = gets.chomp.to_s.downcase
+  if answer == 'yes' || answer == 'y'
+    break
+  end
 end
 
 print_list(list)
